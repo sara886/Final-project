@@ -30,10 +30,11 @@ public class library {
 			book1.name=input.next();
 			book1.date=input.next();
 			book1.auther=input.next();
-	
-		}
-		
+			book[i]=book1;
+			}
+		System.out.println(book[1].name);
 		
 	}
 
 }
+
