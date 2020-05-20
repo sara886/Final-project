@@ -4,7 +4,7 @@ public class library {
 	public static void main(String[] args) {
 		ArrayList<book> books= new ArrayList<book>();
 		
-	   //books=GetBookInformation();
+	   books=GetBookInformation();
 	   book book1=new book();
 	   book book2=new book();
 	   book book3=new book();
