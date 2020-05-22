@@ -2,9 +2,9 @@ import java.util.*;
 public class library {
 
 	public static void main(String[] args) {
-		ArrayList<book> books= new ArrayList<book>();
+		book[] books= new book[10];
 		
-	   books=GetBookInformation();
+	   //books=GetBookInformation(books);
 	   book book1=new book();
 	   book book2=new book();
 	   book book3=new book();
@@ -17,13 +17,13 @@ public class library {
 	   book3.name="love";
 	   book3.auther="gigi";
 	   book3.copies=5;
-	   books.add(0,book1);
-	   books.add(1,book2);
-	   books.add(2,book3);
+	   books[0]=book1;
+	   books[1]=book2;
+	   books[2]=book3;
 
 
-		ArrayList<user> users= new ArrayList<user>();
-		//users=GetUserInformation();
+		user[] users= new user[10];
+		//users=GetUserInformation(users);
 		int operation=0;
 		while(operation!=-1){
 			System.out.println(" Which one of the flowing operation would you like to do, please press ");
@@ -44,9 +44,9 @@ public class library {
 		}
 	
 	}
-		public static ArrayList<book> GetBookInformation(){
+		public static book[] GetBookInformation(book[] books ){
 		System.out.println("Welcom, you need first to insert the information of the books already exixst in the library");
-		ArrayList<book> books=new ArrayList<book>();
+		
 		
 		System.out.println("please enter number of books you want to insert");
 		Scanner input=new Scanner(System.in);
@@ -63,14 +63,19 @@ public class library {
 			book1.auther=book1.auther.toLowerCase();
             System.out.println("please enter number of copies");
 			book1.copies=input.nextInt();
-			books.add(book1);
+			for(int j=0;j<books.length;j++){
+				if(books[j]==null){
+					books[j]=book1;
+					break;
+				}
+			}
 		}
 		return books; 
 	}
 		
 		
-		public static ArrayList GetUserInformation(){
-			ArrayList<user> users=new ArrayList<user>();
+		public static user[] GetUserInformation(user[] users){
+		
 			System.out.println("please insert users information");
 			System.out.println("please enter number of users you want to insert");
 			Scanner input=new Scanner(System.in);
@@ -84,7 +89,7 @@ public class library {
 			}
 		
 		
-		public static int BookSearch (ArrayList<book> books){
+		public static int BookSearch (book[] books){
 			System.out.println("If you want to search for the book by its name or you are in the process of inserting a new book please enter 1 to make sure the book doesn't already exixt");
 			System.out.println("If you want to search for the book by its auther please enter  2");
 			Scanner input=new Scanner(System.in);
@@ -92,20 +97,22 @@ public class library {
 			int book_index=-1;
 			if(operation==1){
 				System.out.println("please enter the book's name");
+
 				String book_name=input.next();
-				for(int i=0;i<books.size();i++){
-					if(books.get(i).name.equals(book_name.toLowerCase())){
-						System.out.println("number of copies of "+book_name+" is "+ books.get(i).copies);
+				for(int i=0;i<books.length;i++){
+					if((books[i]!=null)&&(books[i].name.equals(book_name.toLowerCase()))){
+						System.out.println("number of copies of "+book_name+" is "+ books[i].copies);
 						book_index=i;
+						break;
 						}
 					}
 			}
 			if(operation==2){
 				System.out.println("please enter the book's auther");
 				String book_auther=input.next();
-				for(int i=0;i<books.size();i++){
-					if(books.get(i).auther.equals(	book_auther.toLowerCase())){
-						System.out.println("number of copies of "+book_auther+"'s "+books.get(i).name+" is "+ books.get(i).copies);
+				for(int i=0;i<books.length;i++){
+					if(books[i]!=null&&books[i].auther.equals(book_auther.toLowerCase())){
+						System.out.println("number of copies of "+book_auther+"'s "+books[i].name+" is "+ books[i].copies);
 						book_index=i;
 					}
 				}
@@ -116,7 +123,7 @@ public class library {
 		}
 		
 		
-		public static void InsertBook(ArrayList<book>books){
+            public static void InsertBook(book[] books){
 			
 			System.out.println("please enter number of books you want to insert");
 			Scanner input=new Scanner(System.in);
@@ -127,33 +134,42 @@ public class library {
 				book1.name=input.next();
 				int book_index=BookSearch(books);
 				if(book_index!=-1){
-					books.get(book_index).copies++;
+					books[book_index].copies++;
+					System.out.println("T he book was already found so the the number of copies are increased by one and became "+books[book_index].copies);
 				}else{
 				book1.name=book1.name.toLowerCase();
 				System.out.println("please enter date of puplish in the format Month/Year");
 				book1.date=input.next();
 				System.out.println("please enter Auther's name");
 				book1.auther=input.next();
+				book1.auther=book1.auther.toLowerCase();
 				System.out.println("please enter number of copies");
 				book1.copies=input.nextInt();
-				books.add(book1);
+				for(int j=0;j<books.length;j++){
+					if(books[j]==null){
+						books[j]=book1;
+						break;
+					}
 				}
+			}
 				
 				
 			}
 		}
 		
-		public static void CopyDelete(ArrayList<book>books){
+		public static void CopyDelete(book[] books){
 		Scanner input=new Scanner(System.in);
 		System.out.println("please insert name of the book");
 		String book_name=input.next();
-		for(int i=0;i<books.size();i++){
-			if(books.get(i).name.equals(book_name.toLowerCase())){
-				if(books.get(i).copies==0){
+		for(int i=0;i<books.length;i++){
+			if(books[i]!=null&&books[i].name.equals(book_name.toLowerCase())){
+				if(books[i].copies==0){
 					System.out.println("The book has no copies in the library right now");
+					break;
 				}else{
-					books.get(i).copies--;
+					books[i].copies--;
 					System.out.println("the copy is deleted succsessfully");
+					break;
 				}
 				
 			}
