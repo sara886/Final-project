@@ -2,60 +2,12 @@ import java.util.*;
 public class library {
 
 	public static void main(String[] args) {
-	   book[] books= new book[10];
-	   //books=GetBookInformation(books);
-	   member[] members= new member[10];
-	   //members=GetmemberInformation(members);
-       BorrowedBook[] Bbooks=new BorrowedBook[10];	   
-	   book book1=new book();
-	   book book2=new book();
-	   book book3=new book();
-	   book1.name="sara";
-	   book1.auther="habo";
-	   book1.copies=3;
-	   book2.name="salma";
-	   book2.auther="habo";
-	   book2.copies=2;
-	   book3.name="love";
-	   book3.auther="gigi";
-	   book3.copies=5;
-	   books[0]=book1;
-	   books[1]=book2;
-	   books[2]=book3;
-
-        BorrowedBook bbook1=new BorrowedBook();
-        BorrowedBook bbook2=new BorrowedBook();
-        BorrowedBook bbook3=new BorrowedBook();
-        bbook1.name="love";
-        bbook1.memberID=20;
-        bbook1.duration=6;
-        bbook1.date="22/5/2020";
-        bbook2.name="sara";
-        bbook2.memberID=30;
-        bbook2.duration=2;
-        bbook2.date="22/5/2020";
-        bbook3.name="salma";
-        bbook3.memberID=20;
-        bbook3.duration=3;
-        bbook3.date="22/5/2020";
-        Bbooks[0]=bbook1;
-        Bbooks[1]=bbook2;
-        Bbooks[2]=bbook3;
-		
-		member member1=new member();
-		member member2=new member();
-		member member3=new member();
-		member1.ID=20;
-		member1.name="Ali";
-		member2.ID=30;
-		member2.name="Mai";
-		member3.ID=40;
-		member3.name="Sama";
-		members[0]=member1;
-		members[1]=member2;
-		members[2]=member3;
-  
-		int operation=0;
+	book[] books= new book[10];
+	books=GetBookInformation(books);
+	member[] members= new member[10];
+	members=GetmemberInformation(members);
+        BorrowedBook[] Bbooks=new BorrowedBook[10];	   
+	int operation=0;
         while(operation!=-1){
 			System.out.println(" Which one of the flowing operation would you like to do, please press ");
 			System.out.println("1 for book insertion");
