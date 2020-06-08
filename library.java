@@ -245,15 +245,15 @@ public class library {
 					Bbooks[i]=null;
 					break;
 					}
-				
+			}
 					 for(int j=0;j<books.length;j++){
-				        if(books[j].name.equals(book_name.toLowerCase())){
+				        if(books[j]!=null&&books[j].name.equals(book_name.toLowerCase())){
 					        books[j].copies++;
 					        System.out.println("Book is checked in");
 					        break;
 				         }
 			         }
-			   }
+			  
 			}
 		
 		
