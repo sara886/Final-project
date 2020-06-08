@@ -2,13 +2,13 @@ import java.util.*;
 public class library {
 
 	public static void main(String[] args) {
-	book[] books= new book[10];
-	books=GetBookInformation(books);
-	member[] members= new member[10];
-        members=GetmemberInformation(members);
-        BorrowedBook[] Bbooks=new BorrowedBook[10];	   
-	int operation=0;
-        while(operation!=-1){
+	   book[] books= new book[10];
+	   books=GetBookInformation(books);
+	   member[] members= new member[10];
+	   members=GetmemberInformation(members);
+       BorrowedBook[] Bbooks=new BorrowedBook[10];	   
+	   int operation=0;
+       while(operation!=-1){
 			System.out.println(" Which one of the flowing operation would you like to do, please press ");
 			System.out.println("1 for book insertion");
 			System.out.println("2 for borrow");
@@ -43,7 +43,7 @@ public class library {
 		int num_book=input.nextInt();
 		for(int i=0;i<num_book;i++){
 			book book1=new book();
-			System.out.println("please enter the book name");
+			System.out.println("please enter the book name with no space in it");
 			book1.name=input.next();
 			book1.name=book1.name.toLowerCase();
 			
@@ -51,7 +51,7 @@ public class library {
 			book1.date=input.next();
 			System.out.println("please enter number of copies");
 			book1.copies=input.nextInt();
-			System.out.println("please enter Auther's name");
+			System.out.println("please enter Auther's name with no space in it");
 			book1.auther=input.next();
 			book1.auther=book1.auther.toLowerCase();
            
@@ -72,7 +72,7 @@ public class library {
 			int num_member=input.nextInt();
 			for(int i=0;i<num_member;i++){
 				member member1=new member();
-				System.out.println("please enter member's name");
+				System.out.println("please enter member's name with no space in it");
                 member1.name=input.next();
                 System.out.println("please enter member's ID");
 				member1.ID=input.nextInt();
@@ -94,7 +94,7 @@ public class library {
 			int operation=input.nextInt();
 			int book_index=-1;
 			if(operation==1){
-				System.out.println("please enter the book's name");
+				System.out.println("please enter the book's name with no space in it");
 
 				String book_name=input.next();
 				for(int i=0;i<books.length;i++){
@@ -106,7 +106,7 @@ public class library {
 					}
 			}
 			if(operation==2){
-				System.out.println("please enter the book's auther");
+				System.out.println("please enter the book's auther with no space in it");
 				String book_auther=input.next();
 				for(int i=0;i<books.length;i++){
 					if(books[i]!=null&&books[i].auther.equals(book_auther.toLowerCase())){
@@ -115,7 +115,7 @@ public class library {
 					}
 				}
 			}
-			if( book_index==-1) System.out.println("Book is not found");
+			if( book_index==-1) System.out.println("Book or auther is not found");
 			
 			return book_index;
 		}
@@ -128,7 +128,7 @@ public class library {
 			int num_book=input.nextInt();
 			for(int i=0;i<num_book;i++){
 				book book1=new book();
-				System.out.println("please enter the book name");
+				System.out.println("please enter the book name with no space in it");
 				book1.name=input.next();
 				int book_index=BookSearch(books);
 				if(book_index!=-1){
@@ -138,7 +138,7 @@ public class library {
 				book1.name=book1.name.toLowerCase();
 				System.out.println("please enter date of puplish in the format Month/Year");
 				book1.date=input.next();
-				System.out.println("please enter Auther's name");
+				System.out.println("please enter Auther's name with no space in it");
 				book1.auther=input.next();
 				book1.auther=book1.auther.toLowerCase();
 				System.out.println("please enter number of copies");
@@ -158,26 +158,31 @@ public class library {
 		
 		public static boolean CopyDelete(book[] books){
 			Scanner input=new Scanner(System.in);
-		    System.out.println("please insert name of the book");
+		    System.out.println("please insert name of the book with no space in it");
 		    String book_name=input.next();
 		    boolean book_found=false;
+		    int index=-1;
 		    for(int i=0;i<books.length&&books[i]!=null;i++){
 		    	if(books[i].name.equals(book_name.toLowerCase())){
 		    		book_found=true;
-					if(books[i].copies==0){
+					index=i;
+		    		if(books[i].copies==0){
 						System.out.println("The book has no copies in the library right now");
-						 break;
+						book_found=false;
+						index=i;
+						break;
 					        }else{
 						       books[i].copies--;
 						       System.out.println("the copy is deleted succsessfully and number of copies now is "+books[i].copies);
-						        break;
+						       index=i; 
+						       break;
 					        
 					        }
 					     }
 		    	}
 		   
 		    
-		    if(book_found==false){
+		    if(book_found==false&&index==-1){
 		    	System.out.println("Book is not found");
 		    }
 		    return book_found;
@@ -185,12 +190,13 @@ public class library {
 		
 		public static void Borrow (book[]books,member[]members,BorrowedBook[] Bbooks ){
 			Scanner input=new Scanner(System.in);
-			BorrowedBook book1=new BorrowedBook();
+			
 			System.out.println("please insert number of books you want to borrow");
 			
 			int book_num=input.nextInt();
 			for(int i=0;i<book_num;i++){
-				System.out.println("please insert book name");
+				BorrowedBook book1=new BorrowedBook();
+				System.out.println("please insert book number " +(i+1)+"name with no space in it");
 				book1.name=input.next();
 			    book1.name=book1.name.toLowerCase();
 			    System.out.println("please insert member's ID");
@@ -205,13 +211,12 @@ public class library {
 			    if (member_found==false){
 				    System.out.println("member is not found");
 			    }
-			    else {
-			    	CopyDelete(books);
+			    else if(CopyDelete(books)){
 				    System.out.println("please insert duration it has to be less than 14 days");
 				    book1.duration=input.nextInt();
 				    if(book1.duration>14||book1.duration<=0){
 					    System.out.println("Duration has to be less than or equal 14 days and more than 0");
-					    System.out.println("please insert duration it has to be less than 14 days");
+					    System.out.println("please insert duration it has to be less than 14 days and more than 0");
 					    book1.duration=input.nextInt();
 				
 				    }
@@ -231,13 +236,16 @@ public class library {
 		
 		public static void CheckIn(BorrowedBook[] Bbooks,book[]books){
 			Scanner input=new Scanner(System.in);
-			System.out.println("Please insert the book name");
+			System.out.println("Please insert the book name with no space in it");
 			String book_name=input.nextLine();
 			System.out.println("Please insert member's ID");
 			int memberID=input.nextInt();
 			for(int i=0;i<Bbooks.length;i++){
 				if(Bbooks[i]!=null&&Bbooks[i].memberID==memberID&&Bbooks[i].name.equals(book_name.toLowerCase())){
 					Bbooks[i]=null;
+					break;
+					}
+				
 					 for(int j=0;j<books.length;j++){
 				        if(books[j].name.equals(book_name.toLowerCase())){
 					        books[j].copies++;
@@ -247,7 +255,7 @@ public class library {
 			         }
 			   }
 			}
-		}
+		
 		
 		public static void memberSearch(BorrowedBook[]Bbooks,member[] members){
 			Scanner input=new Scanner(System.in);
