@@ -1,4 +1,4 @@
-# Final-prject
+# Final-project
 Names of the team members:
 Sara Mohammed Abd Al-shafi.  Sec:1    B.N35
 Aya Shawky Hassan.                   Sec:1    B.N17
@@ -15,25 +15,27 @@ The program allows the user to manage a library. It allows the user to perform t
 
 When the user opens the program the first thing should be done is insert the books and members of this library then the user choose the operation that he want to do.
 
-(GetBookInformation) 
+(GetBookInformation): 
 This function allows the user to insert books information when he opens the program for the first time. 
 This function have one parameter array “ books" and return "array books"
 First, insert the numbers of books
 Second ,take all information about it (book name, the author, date of puplish and number of copies) and put it in a variable of type book.
 Finally, these books are collected in  the array “books”
-..
-Get member information
+
+Get member information:
 This function allow user to insert the members' information when he opens the programm for the first time.  
 First ,user enters number of members he wants to add.
 Second, insert user ID and Name.
 Finally ,these information added in  the array “members” of type member
 This function returns the array members 
-..
-Booksearch
+
+
+
+
+Booksearch:
 For searching for a book, the user enters 3. Then the method (Booksearch) is used.
 This function allows the user to search either with book name or author name.
-It have one parameter (array books).
-          If user choose searching by book name.
+It have one parameter (array books).If user choose searching by book name.
 First ,user should insert the book's name. 
 Then,  this program compare this name with the name of books in the library (the array books).
 If the book is found , the number of copies of this book will be printed  and the book index will be changed to the number of this book in the array
@@ -43,8 +45,8 @@ Then , the program compares this name with the name of authers in the library (t
 If the book is found .. all this auther's books with the numbers of copies will be printed and also change variable book_index.
 Finally if variable book_index does not change "this book is not found" will be printed.
 This function return variable book index (the place of the book in the array that may be used in other functions).
-..
-InsertBooks:
+
+InsertBook:
 If the user wants to insert a book he needs to enter 1. 
 This function is used when the user needs to add books to the library.
 It takes the  array (books) as a parameter.
@@ -83,3 +85,4 @@ If the user wants to delete any member , he will insert number (7). when the use
 
 Exit the program:
 To exit the program, the user enter -1.
+
